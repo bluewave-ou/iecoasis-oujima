@@ -19,11 +19,15 @@
 <header class="site-header" id="siteHeader">
   <div class="container header-inner">
     <a href="index.html"><p class="logo">IEC Oasis <em>Oujima</em></p></a>
-    <nav>
+    <button class="nav-toggle" id="navToggle" type="button" aria-label="メニューを開く" aria-expanded="false" aria-controls="siteNav">
+      <span></span><span></span><span></span>
+    </button>
+    <nav id="siteNav">
       <ul>
         <li><a href="index.html#concept">想い</a></li>
         <li><a href="menu.html" aria-current="page">メニュー</a></li>
         <li><a href="service.html">サービス</a></li>
+        <li class="nav-cta-item"><a class="btn btn-solid" href="index.html#access">アクセス</a></li>
       </ul>
     </nav>
     <a class="btn btn-outline nav-cta" href="index.html#access">アクセス</a>

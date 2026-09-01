@@ -188,6 +188,14 @@ h2 {
   font-size: 0.85rem;
 }
 
+.nav-toggle {
+  display: none;
+}
+
+.nav-cta-item {
+  display: none;
+}
+
 /* ===== ヒーロー ===== */
 .hero {
   position: relative;
@@ -1031,14 +1039,95 @@ section {
 
 @media (max-width: 640px) {
   .header-inner {
-    flex-wrap: wrap;
+    flex-wrap: nowrap;
+    justify-content: space-between;
+    text-align: left;
+    padding-top: 14px;
+    padding-bottom: 14px;
+    gap: 12px;
+  }
+
+  .logo {
+    font-size: 1.05rem;
+  }
+
+  .nav-toggle {
+    display: flex;
+    flex-direction: column;
     justify-content: center;
-    text-align: center;
+    align-items: center;
+    gap: 5px;
+    width: 36px;
+    height: 36px;
+    padding: 0;
+    border: none;
+    background: transparent;
+    cursor: pointer;
+    flex-shrink: 0;
+    z-index: 21;
+  }
+
+  .nav-toggle span {
+    display: block;
+    width: 24px;
+    height: 2px;
+    background-color: var(--color-ink);
+    border-radius: 2px;
+    transition: transform 0.25s ease, opacity 0.25s ease;
+  }
+
+  .site-header.is-nav-open .nav-toggle span:nth-child(1) {
+    transform: translateY(7px) rotate(45deg);
+  }
+
+  .site-header.is-nav-open .nav-toggle span:nth-child(2) {
+    opacity: 0;
+  }
+
+  .site-header.is-nav-open .nav-toggle span:nth-child(3) {
+    transform: translateY(-7px) rotate(-45deg);
+  }
+
+  .site-header nav {
+    position: fixed;
+    inset: 0;
+    height: 100vh;
+    height: 100svh;
+    flex: none;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: var(--color-cream);
+    opacity: 0;
+    visibility: hidden;
+    transform: translateY(-8px);
+    transition: opacity 0.25s ease, transform 0.25s ease, visibility 0.25s;
+    z-index: 19;
+  }
+
+  .site-header.is-nav-open nav {
+    opacity: 1;
+    visibility: visible;
+    transform: translateY(0);
   }
 
   .site-header nav ul {
-    gap: 16px;
-    flex-wrap: wrap;
+    flex-direction: column;
+    align-items: center;
+    gap: 28px;
+  }
+
+  .site-header nav a {
+    font-size: 1.25rem;
+  }
+
+  .nav-cta {
+    display: none;
+  }
+
+  .nav-cta-item {
+    display: block;
+    margin-top: 8px;
   }
 
   .menu-grid {
@@ -1048,6 +1137,10 @@ section {
   section {
     padding: 72px 0;
   }
+}
+
+body.nav-open {
+  overflow: hidden;
 }
 
 @media (max-width: 480px) {

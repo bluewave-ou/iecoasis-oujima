@@ -68,6 +68,38 @@ window.addEventListener("scroll", () => {
   header.classList.toggle("is-scrolled", window.scrollY > 20);
 });
 
+// ヘッダー:スマホ用ハンバーガーメニューの開閉
+const navToggle = document.getElementById("navToggle");
+const siteNav = document.getElementById("siteNav");
+
+if (navToggle && siteNav && header) {
+  const closeNav = () => {
+    header.classList.remove("is-nav-open");
+    navToggle.setAttribute("aria-expanded", "false");
+    document.body.classList.remove("nav-open");
+  };
+
+  navToggle.addEventListener("click", () => {
+    const isOpen = header.classList.toggle("is-nav-open");
+    navToggle.setAttribute("aria-expanded", String(isOpen));
+    document.body.classList.toggle("nav-open", isOpen);
+  });
+
+  siteNav.querySelectorAll("a").forEach((link) => {
+    link.addEventListener("click", closeNav);
+  });
+
+  window.addEventListener("keydown", (event) => {
+    if (event.key === "Escape") closeNav();
+  });
+
+  window.addEventListener("resize", () => {
+    if (window.innerWidth > 640 && header.classList.contains("is-nav-open")) {
+      closeNav();
+    }
+  });
+}
+
 // スクロールで要素をフェードイン表示
 const revealTargets = document.querySelectorAll(".reveal");
 
